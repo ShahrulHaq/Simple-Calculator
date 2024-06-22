@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Mobile Calculator</title>
+</head>
+<body>
+    <section id="container">
+        
+        <div id="cal">
+            
+            <div id="window">
+                    <input type="text" id="display" disabled>
+            </div>
+            
+            <div id="input">
+                <table id="button">
+                    <tr>
+                        <td><button class="btn" onclick="clearDisplay();" >C</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('%');"  >%</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('/');" >/</button></td>
+                        <td><button class="btn" onclick="backspace();" >←</button></td>
+                    </tr>
+                    <tr> 
+                        <td><button class="btn" onclick="appendToDisplay('7');">7</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('8');" >8</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('9');" >9</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('*');" >x</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn" onclick="appendToDisplay('4');" >4</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('5');" >5</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('6');" >6</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('-');" >-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn" onclick="appendToDisplay('1');" >1</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('2');" >2</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('3');" >3</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('+');" >+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn" onclick="appendToDisplay('00');" >00</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('0');" >0</button></td>
+                        <td><button class="btn" onclick="appendToDisplay('.');" >.</button></td>
+                        <td><button class="btn" onclick="calculateResult();" >=</button></td>
+                    </tr>
+                </table>
+
+                <script type="text/javascript">
+                    
+                    function appendToDisplay(value) {
+                        document.getElementById('display').value += value;
+                    }
+
+                    function clearDisplay() {
+                        document.getElementById('display').value = '';
+                    }
+
+                    function backspace() {
+                        let displayValue = document.getElementById('display').value;
+                        document.getElementById('display').value = displayValue.slice(0, -1);
+                    }
+
+                    function calculateResult() {
+                        const displayValue = document.getElementById('display').value;
+                        try {
+                            const result = eval(displayValue);
+                            document.getElementById('display').value = result;
+                        } catch (error) {
+                            document.getElementById('display').value = 'Error';
+                        }
+                    }
+
+                    function changeTheme(clr1, clr2){
+                        document.getElementById('cal').style.backgroundColor=clr1;
+                        document.getElementById('container').style.backgroundColor=clr2;
+                    }
+
+                </script>
+            
+            </div>
+        </div>
+        <div id="theme">
+            <div class="clr" id="sky-blue" >
+                <button class="btn txt-btn" onclick="changeTheme('#90e0ef','#00b4d8');" style="background-color: #90e0ef;"></button>
+            </div>
+            <div class="clr" id="sea-blue" >
+                <button class="btn txt-btn" onclick="changeTheme('#00b4d8','#90e0ef');" style="background-color: #00b4d8;"></button>
+            </div>
+            <div class="clr" id="tea-green" >
+                <button class="btn txt-btn" onclick="changeTheme('#2d952a','#60d088');" style="background-color: #2d952a;"></button>
+            </div>
+            <div class="clr" id="deep-forest" >
+                <button class="btn txt-btn" onclick="changeTheme('#0a724f','#98d4ac');" style="background-color: #0a724f;" ></button>
+            </div>
+            <div class="clr" id="bush-forest" >
+                <button class="btn txt-btn" onclick="changeTheme('#98d4ac','#0a724f');" style="background-color: #98d4ac;" ></button>
+            </div>
+            <div class="clr" id="desert" >
+                <button class="btn txt-btn" onclick="changeTheme('#ae7647','#e6c3a7');" style="background-color: #ae7647;"></button>
+            </div>
+            <div class="clr" id="rose-milk" >
+                <button class="btn txt-btn" onclick="changeTheme('#fba2dd','#f66bb7');" style="background-color: #fba2dd;"></button>
+            </div>
+            <div class="clr" id="rose-sugar" >
+                <button class="btn txt-btn" onclick="changeTheme('#f66bb7','#fba2dd');" style="background-color: #f66bb7;"></button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
